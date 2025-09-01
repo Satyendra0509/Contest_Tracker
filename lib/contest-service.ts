@@ -1,6 +1,7 @@
 import type { Contest } from "@/types/contest"
 
-// Fetch contests from Google Calendar API
+// Fetch contests from Google Calendar API\
+const DEFAULT_PLATFORMS=['AtCoder','LeetCode','Codeforces'];
 export async function fetchContests(): Promise<Contest[]> {
   // Define time range - current date to 30 days in future, and past 7 days
   const now = new Date()
@@ -20,7 +21,9 @@ export async function fetchContests(): Promise<Contest[]> {
   )
 
   const data = await response.json()
-  return parseContests(data.items)
+   return parseContests(data.items).filter((contest) =>
+    DEFAULT_PLATFORMS.includes(contest.platform),
+  )
 }
 
 // Parse raw contest data into structured format
@@ -33,12 +36,12 @@ function parseContests(items: any[]): Contest[] {
     if (platformMatch) {
       const fullPlatform = platformMatch[1]
 
-      // Map to our targeted platforms
-      if (fullPlatform.includes("Codeforces")) platform = "Codeforces"
-      else if (fullPlatform.includes("CodeChef")) platform = "CodeChef"
-      else if (fullPlatform.includes("LeetCode")) platform = "LeetCode"
-      else if (fullPlatform.includes("AtCoder")) platform = "AtCoder"
-      else platform = fullPlatform
+
+      if (/codeforces/i.test(fullPlatform)) platform = "Codeforces"
+     else if (/codechef/i.test(fullPlatform)) platform = "CodeChef"
+     else if (/leetcode/i.test(fullPlatform)) platform = "LeetCode"
+     else if (/atcoder/i.test(fullPlatform)) platform = "AtCoder"
+     else platform = fullPlatform
     }
 
     // Clean up the title by removing the platform tag
