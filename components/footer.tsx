@@ -25,21 +25,11 @@ export default function Footer() {
             className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1.5 transition-colors"
           >
             <Linkedin className="h-4 w-4" />
-            <span>Vibe Coded by Suraj Gaud</span>
+            <span>Vibe Coded by Satyendra Kumar Baghel</span>
           </a>
 
           <a
-            href="https://twitter.com/notsurajgaud"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1.5 transition-colors"
-          >
-            <Twitter className="h-4 w-4" />
-            <span>@notsurajgaud</span>
-          </a>
-
-          <a
-            href="https://github.com"
+            href="https://github.com/Satyendra0509/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1.5 transition-colors"
